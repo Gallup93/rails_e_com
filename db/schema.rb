@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_202643) do
+ActiveRecord::Schema.define(version: 2020_07_11_225846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2020_07_11_202643) do
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "seed_id"
   end
 
   create_table "invoice_items", force: :cascade do |t|
@@ -30,7 +29,6 @@ ActiveRecord::Schema.define(version: 2020_07_11_202643) do
     t.integer "unit_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "seed_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -39,24 +37,22 @@ ActiveRecord::Schema.define(version: 2020_07_11_202643) do
     t.string "stats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "seed_id"
+    t.string "status"
   end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "unit_price"
+    t.float "unit_price"
     t.integer "merchant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "seed_id"
   end
 
   create_table "merchants", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "seed_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -65,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_202643) do
     t.string "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "seed_id"
+    t.string "credit_card_expiration_date"
   end
 
 end
