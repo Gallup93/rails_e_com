@@ -4,4 +4,9 @@ class Api::V1::ItemsController < ApplicationController
     render json: ItemSerializer.new(Item.all)
   end
 
+  def show
+    show_item = Item.find(params[:id])
+    render json: ItemSerializer.new(show_item)
+  end
+
 end
