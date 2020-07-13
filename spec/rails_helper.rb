@@ -1,8 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'simplecov'
-require 'vcr'
-require 'webmock/rspec'
 
 
 SimpleCov.start
@@ -68,12 +66,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-end
-
-VCR.configure do |config|
-  config.cassette_library_dir = 'spec/cassettes'
-  config.hook_into :webmock
-  config.filter_sensitive_data("<GITHUB_API_KEY>") { ENV['GITHUB_API_KEY'] } # If using Figaro
 end
 
 Shoulda::Matchers.configure do |config|

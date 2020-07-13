@@ -11,12 +11,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rspec-rails'
 gem 'rack-cors'
 gem 'fast_jsonapi'
+gem 'faraday'
 
 group :development, :test do
   gem 'figaro'
   gem 'pry'
-  gem 'vcr'
-  gem 'webmock'
   gem 'factory_bot_rails'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false, group: :test
