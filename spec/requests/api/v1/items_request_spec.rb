@@ -35,7 +35,7 @@ describe "Items API" do
     expect(items["data"]["id"].to_i).to eq(test_item.id)
   end
 
-  it "creates a new item" do
+  it "creates/deletes a new item" do
     name = "Shiny Itemy Item"
     description = "It does a lot of things real good"
     unit_price = 5011.96
@@ -73,4 +73,32 @@ describe "Items API" do
     expect(deleted_item[:attributes][:unit_price]).to eq(unit_price)
     expect(deleted_item[:attributes][:merchant_id]).to eq(merchant_id)
   end
+
+  it "updates an item" do
+    create_list(:item, 3)
+
+    name = "Big Ol New THING"
+      description = Item.first.description
+      unit_price = Item.first.unit_price
+      merchant_id = Item.first.merchant_id
+
+      body = {
+        name: name,
+        description: description,
+        unit_price: unit_price,
+        merchant_id: merchant_id
+      }
+
+      response = conn("/api/v1/items/#{Item.first.id}").patch do |request|
+        request.body = body
+      end
+
+      json = JSON.parse(response.body, symbolize_names: true)
+      item = json[:data][0]
+
+      expect(item[:attributes][:name]).to eq("Big Ol New THING")
+      expect(item[:attributes][:description]).to eq(description)
+      expect(item[:attributes][:unit_price]).to eq(unit_price)
+      expect(item[:attributes][:merchant_id]).to eq(merchant_id)
+    end
 end
