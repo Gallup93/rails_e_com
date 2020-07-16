@@ -15,7 +15,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    render json: ItemSerializer.new(Item.update(item_params))
+    render json: ItemSerializer.new(Item.update(params[:id], item_params))
   end
 
   def destroy
@@ -28,5 +28,6 @@ class Api::V1::ItemsController < ApplicationController
   def item_params
     params.permit(:name, :description, :unit_price, :merchant_id)
   end
+
 
 end

@@ -94,8 +94,7 @@ describe "Items API" do
       end
 
       json = JSON.parse(response.body, symbolize_names: true)
-      item = json[:data][0]
-
+      item = json[:data]
       expect(item[:attributes][:name]).to eq("Big Ol New THING")
       expect(item[:attributes][:description]).to eq(description)
       expect(item[:attributes][:unit_price]).to eq(unit_price)
